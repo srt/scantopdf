@@ -16,12 +16,13 @@ do
   shift
 done
 
+IMAGE_PROCESSING_OPTIONS="-id --convertToBWImage"
+#IMAGE_PROCESSING_OPTIONS="-id --grayJpegQuality 90 --colorJpegQuality 90"
 abbyyocr9 \
   --progressInformation \
-  -id \
-  --convertToBWImage \
   --recognitionLanguage German \
-  ${INPUT_FILES[@]} \
+  $IMAGE_PROCESSING_OPTIONS \
+  "${INPUT_FILES[@]}" \
   --outputFileFormat PDFA \
   --pdfaExportMode ImageOnText \
   --pdfaReleasePageSizeByLayoutSize \

@@ -18,8 +18,8 @@ EOF
 }
 
 SOURCE="ADF Front"
-MODE="Lineart"
-RESOLUTION="150"
+MODE="Gray"
+RESOLUTION="300"
 BATCH_START="1"
 TITLE=`uuidgen`
 SUBJECT="${TITLE}"
@@ -29,9 +29,9 @@ do
 	case $OPTION in
 		h) usage; exit 1 ;;
 		d) SOURCE="ADF Duplex" ;;
-		m) MODE=$OPTARG ;;
-		r) RESOLUTION=$OPTARG ;;
-		s) BATCH_START=$OPTARG ;;
+		m) MODE="$OPTARG" ;;
+		r) RESOLUTION="$OPTARG" ;;
+		s) BATCH_START="$OPTARG" ;;
 		t) TITLE="$OPTARG"; SUBJECT="$OPTARG" ;;
 	esac
 done
@@ -60,6 +60,8 @@ scanimage \
   --rollerdeskew=yes \
   --swcrop=yes \
   --stapledetect=yes \
+  --mode="${MODE}" \
+  --resolution="${RESOLUTION}" \
   --source "${SOURCE}"
 
 #  --df-thickness=yes \

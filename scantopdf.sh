@@ -52,6 +52,7 @@ then
 fi
 
 scanimage \
+  -d canon_dr \
   --batch="${DEST_DIR}/out%03d.pnm" \
   --batch-start=${BATCH_START} \
   --resolution=${RESOLUTION} \
@@ -80,15 +81,16 @@ done
 if [ ! -z "$DEST_FILE" ]
 then
 	tiffcp "${DEST_DIR}/"*".tif" "${DEST_DIR}/all.tif"
-	abbyyocr9 \
+	abbyyocr11 \
 	  --progressInformation \
-	  -id \
 	  --convertToBWImage \
 	  --recognitionLanguage German \
 	  --inputFileName "${DEST_DIR}/all.tif" \
-	  --outputFileFormat PDFA \
-	  --pdfaExportMode ImageOnText \
-	  --pdfaReleasePageSizeByLayoutSize \
+	  --skipEmptyPages \
+	  --outputFileFormat PDF \
+	  --pdfPaperSizeMode SynthesisSize \
+	  --pdfTextExportMode ImageOnText \
+	  --pdfaComplianceMode Pdfa_2a \
 	  --outputFileName "${DEST_DIR}/result.pdf"
 #	tiff2pdf \
 #	  -j -q 50 \

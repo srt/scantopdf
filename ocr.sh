@@ -16,14 +16,17 @@ do
   shift
 done
 
-IMAGE_PROCESSING_OPTIONS="-id --convertToBWImage"
+#IMAGE_PROCESSING_OPTIONS="--convertToBWImage"
+IMAGE_PROCESSING_OPTIONS=""
 #IMAGE_PROCESSING_OPTIONS="-id --grayJpegQuality 90 --colorJpegQuality 90"
-abbyyocr9 \
+abbyyocr11 \
   --progressInformation \
   --recognitionLanguage German \
   $IMAGE_PROCESSING_OPTIONS \
   "${INPUT_FILES[@]}" \
-  --outputFileFormat PDFA \
-  --pdfaExportMode ImageOnText \
-  --pdfaReleasePageSizeByLayoutSize \
+  --skipEmptyPages \
+  --outputFileFormat PDF \
+  --pdfPaperSizeMode SynthesisSize \
+  --pdfTextExportMode ImageOnText \
+  --pdfaComplianceMode Pdfa_2a \
   --outputFileName "$1"

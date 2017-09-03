@@ -59,11 +59,12 @@ scanimage \
   -l 0 -t 0 -x 210 -y 297 \
   --page-width 210 --page-height 297 \
   --rollerdeskew=yes \
-  --swcrop=yes \
   --stapledetect=yes \
   --mode="${MODE}" \
   --resolution="${RESOLUTION}" \
   --source "${SOURCE}"
+
+#  --swcrop=yes \
 
 #  --df-thickness=yes \
 #unpaper -v --dpi ${RESOLUTION} -s a4 "${DEST_DIR}/out%03d.pnm" "${DEST_DIR}/unpaper_out%03d.pnm"

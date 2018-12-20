@@ -23,6 +23,9 @@ RESOLUTION="300"
 BATCH_START="1"
 TITLE=`uuidgen`
 SUBJECT="${TITLE}"
+#IMAGE_PROCESSING_OPTIONS="--convertToBWImage"
+IMAGE_PROCESSING_OPTIONS=""
+#IMAGE_PROCESSING_OPTIONS="-id --grayJpegQuality 90 --colorJpegQuality 90"
 
 while getopts "hdm:r:s:t:" OPTION
 do
@@ -84,8 +87,8 @@ then
 	tiffcp "${DEST_DIR}/"*".tif" "${DEST_DIR}/all.tif"
 	abbyyocr11 \
 	  --progressInformation \
-	  --convertToBWImage \
 	  --recognitionLanguage German \
+	  $IMAGE_PROCESSING_OPTIONS \
 	  --inputFileName "${DEST_DIR}/all.tif" \
 	  --skipEmptyPages \
 	  --outputFileFormat PDF \
